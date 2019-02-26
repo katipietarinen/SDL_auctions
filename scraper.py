@@ -8,8 +8,9 @@ import lxml.html
 html = scraperwiki.scrape("https://www.sdlauctions.co.uk/property-list/")
 print (html)
 # # Find something on the page using css selectors
-# root = lxml.html.fromstring(html)
-# root.cssselect("div[align='left']")
+root = lxml.html.fromstring(html)
+#Change "div[align='left']" to a different CSS selector to grab something else. What we need is inside an a tag, inside a p tag inside a li tag.
+root.cssselect("li p a")
 #
 # # Write out to the sqlite database using scraperwiki library
 # scraperwiki.sqlite.save(unique_keys=['name'], data={"name": "susan", "occupation": "software developer"})
