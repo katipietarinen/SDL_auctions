@@ -11,12 +11,18 @@ root = lxml.html.fromstring(html)
 #Change "div[align='left']" to a different CSS selector to grab something else. What we need is inside an a tag, inside a p tag inside a li tag.
 #Store the matches in 'matchedlinks'
 matchedlinks = root.cssselect("li p a")
+#create a dictionary called record
+record = {}
 #Loop through the items in matchedlinks, calling each one li
 for li in matchedlinks:
   #Store the text contents of li in a new variable listtext
   listtext = li.text_content()
   #print that
   print(listtext)
+  #store it in the 'record' dictionary under the key 'address'
+  record['address'] = listtext
+    #save the record to the datastore with 'address' as the unique key
+  scraperwiki.sqlite.save(['address'],record)
 
 #
 # # Write out to the sqlite database using scraperwiki library
